@@ -10,7 +10,7 @@ class DrawRacketAction(Action):
 
         
     def execute(self, cast, script, callback):
-        racket = cast.get_first_actor(RACKET_GROUP)
+        racket = cast.get_first_actor(self._player)
         body = racket.get_body()
 
         if racket.is_debug():

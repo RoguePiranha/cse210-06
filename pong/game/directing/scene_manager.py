@@ -42,7 +42,7 @@ class SceneManager:
     PHYSICS_SERVICE = RaylibPhysicsService()
     VIDEO_SERVICE = RaylibVideoService(GAME_NAME, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE, STATS_GROUP_P1, STATS_GROUP_P2)
     P1_COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE,RACKET_GROUP_P1)
     P2_COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE,RACKET_GROUP_P2)
     P1_CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE,RACKET_GROUP_P1,P1_UP,P1_DOWN)
@@ -83,13 +83,13 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
-        self._add_stats(cast)
-        self._add_level(cast)
-        self._add_lives(cast)
-        self._add_score(cast)
+        self._add_stats(cast, STATS_GROUP_P1)
+        self._add_stats(cast, STATS_GROUP_P2)
+        self._add_score(cast, SCORE_GROUP_P1, SCORE_P1_X_POSITION)
+        self._add_score(cast, SCORE_GROUP_P2, SCORE_P2_X_POSITION)
         self._add_ball(cast)
-        self._add_bricks(cast)
-        self._add_racket(cast)
+        self._add_racket(cast,RACKET_GROUP_P1,RACKET_POSITION_P1)
+        self._add_racket(cast,RACKET_GROUP_P2,RACKET_POSITION_P2)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
