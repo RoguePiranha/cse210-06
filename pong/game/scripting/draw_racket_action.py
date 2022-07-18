@@ -4,8 +4,10 @@ from game.scripting.action import Action
 
 class DrawRacketAction(Action):
 
-    def __init__(self, video_service):
+    def __init__(self, video_service, player):
         self._video_service = video_service
+        self._player = player
+
         
     def execute(self, cast, script, callback):
         racket = cast.get_first_actor(RACKET_GROUP)
